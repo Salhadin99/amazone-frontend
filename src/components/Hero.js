@@ -1,23 +1,39 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 function Hero() {
   return (
-    <Wrapper>
-        <article className="content">
-            <h1>Design Your Confort Zone </h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sequi fugiat, qui sint placeat dolorum eveniet aperiam cumque, mollitia cum soluta consequatur voluptate ipsa vero vel nobis aut necessitatibus totam.</p>
-            <Link to='/products' className='btn btn-hero'>Shop Now</Link>
-
-        </article>
-        <article className='img-container'>
-          <img src="/download.jpg" alt="nice table" className='main-image' />
-          <img src="/download.jpg" alt="person working" className='main-image' />
-        </article>
+    <Wrapper className="section-center">
+      <article className="content">
+        <h1>
+          Design Your
+          <br /> Confort Zone{" "}
+        </h1>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sequi
+          fugiat, qui sint placeat dolorum eveniet aperiam cumque, mollitia cum
+          soluta consequatur voluptate ipsa vero vel nobis aut necessitatibus
+          totam.
+        </p>
+        <Link to="/products" className="btn hero-btn">
+          Shop Now
+        </Link>
+      </article>
+      <article className="img-container">
+        <img
+          src="/r-architecture-CCjAPxoQWgQ-unsplash.jpg"
+          alt="nice table"
+          className="main-img"
+        />
+        <img
+          src="/spacejoy-umAXneH4GhA-unsplash.jpg"
+          alt="person working"
+          className="accent-img"
+        />
+      </article>
     </Wrapper>
-  )
+  );
 }
 
 const Wrapper = styled.section`
@@ -70,7 +86,7 @@ const Wrapper = styled.section`
       border-radius: var(--radius);
     }
     .img-container::before {
-      content: '';
+      content: "";
       position: absolute;
       width: 10%;
       height: 80%;
@@ -80,6 +96,6 @@ const Wrapper = styled.section`
       border-radius: var(--radius);
     }
   }
-`
+`;
 
-export default Hero
+export default Hero;

@@ -1,17 +1,25 @@
-import React from 'react'
-import PageHero from '../components/PageHero'
-import styled from 'styled-components'
-
+import React from "react";
+import PageHero from "../components/PageHero";
+import styled from "styled-components";
+import Filters from "../components/Filters";
+import Sort from "../components/Sort";
+import ProductList from "../components/ProductList";
 
 function Productspage() {
   return (
     <main>
-      <PageHero title='products'/>
-      <Wrapper>
-        <h1>Product</h1>
+      <PageHero title="products" />
+      <Wrapper className="page">
+        <div className="section-center products">
+          <Filters />
+          <div>
+            <Sort />
+            <ProductList />
+          </div>
+        </div>
       </Wrapper>
     </main>
-  )
+  );
 }
 
 const Wrapper = styled.div`
@@ -25,5 +33,5 @@ const Wrapper = styled.div`
       grid-template-columns: 200px 1fr;
     }
   }
-`
-export default Productspage
+`;
+export default Productspage;

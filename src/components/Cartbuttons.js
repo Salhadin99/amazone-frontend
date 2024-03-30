@@ -1,27 +1,45 @@
-import React from 'react'
-import { FaShoppingCart, FaUserPlus } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { useProductsContext } from '../Contexts/products_context'
+import React from "react";
+import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { useProductsContext } from "../Contexts/products_context";
+import { useCartContext } from "../Contexts/cart_context";
+import { useUserContext } from "../Contexts/user_context";
+import { useAuthContext } from "../Contexts/auth_context";
+import { useNavigate } from "react-router-dom";
 
-function CartButtons() {
-  const { closeSidebar} = useProductsContext()
+const CartButtons = () => {
+  const { closeSidebar } = useProductsContext();
+  const { total_items } = useCartContext();
+  const { isAuthenticated, setIsAuthenticated } = useAuthContext();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    navigate("/");
+  };
 
   return (
-     <Wrapper className='cart-btn-wrapper'>
-      <Link to='/cart' onClick={closeSidebar}>
-        <span className='cart-container'>
-          <FaShoppingCart />
-          <sup className='cart-value'>12</sup>
-        </span>
+    <Wrapper className="cart-btn-wrapper">
+      <Link to="/cart" onClick={closeSidebar} className="cart-btn">
         Cart
+        <span className="cart-container">
+          <FaShoppingCart />
+          <span className="cart-value">{total_items}</span>
+        </span>
       </Link>
-      <button type="button" className='auth-btn'>
-        Login <FaUserPlus />
-      </button>
+      {isAuthenticated ? (
+        <button type="button" className="auth-btn" onClick={handleLogout}>
+          Logout <FaUserMinus />
+        </button>
+      ) : (
+        <Link type="button" className="auth-btn" to="/login">
+          Login <FaUserPlus />
+        </Link>
+      )}
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.div`
   display: grid;
@@ -29,19 +47,28 @@ const Wrapper = styled.div`
   align-items: center;
   width: 225px;
 
-   .cart-container {
+  .cart-btn {
+    color: var(--clr-grey-1);
+    font-size: 1.5rem;
+    letter-spacing: var(--spacing);
+    color: var(--clr-grey-1);
+    display: flex;
+
+    align-items: center;
+  }
+  .cart-container {
     display: flex;
     align-items: center;
     position: relative;
     svg {
-      height: 1.8rem;
-      margin-left: 58px;
+      height: 1.6rem;
+      margin-left: 5px;
     }
   }
   .cart-value {
     position: absolute;
     top: -10px;
-    right: 20px;
+    right: -16px;
     background: var(--clr-primary-5);
     width: 16px;
     height: 16px;
@@ -66,6 +93,5 @@ const Wrapper = styled.div`
       margin-left: 5px;
     }
   }
-`
-
-export default CartButtons
+`;
+export default CartButtons;

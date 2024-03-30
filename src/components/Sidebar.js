@@ -1,20 +1,26 @@
-import React from 'react'
-import { FaTimes } from 'react-icons/fa'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { links } from '../Utils/Constants'
-import CartButtons from './Cartbuttons'
-import { useProductsContext } from '../Contexts/products_context'
+import React from "react";
+import { FaTimes } from "react-icons/fa";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { links } from "../Utils/Constants";
+import CartButtons from "./Cartbuttons";
+import { useProductsContext } from "../Contexts/products_context";
+import { useUserContext } from "../Contexts/user_context";
 
 function Sidebar() {
-  const { isSideOpen, closeSidebar} = useProductsContext()
+  const { isSideOpen, closeSidebar } = useProductsContext();
+  const { myUser } = useUserContext();
 
   return (
     <SidebarContainer>
-      <aside className={`sidebar ${isSideOpen ? 'sidebar show-sidebar' : 'sidebar'}`}>
-        <div className='sidebar-header'>
+      <aside
+        className={`sidebar ${isSideOpen ? "sidebar show-sidebar" : "sidebar"}`}
+      >
+        <div className="sidebar-header">
           <img src="/download.jpg" alt="comfy sloth" />
-          <button type='button' onClick={closeSidebar}><FaTimes/></button>
+          <button type="button" onClick={closeSidebar}>
+            <FaTimes />
+          </button>
         </div>
         <ul className="links">
           {links.map(({ id, url, text }) => (
@@ -22,15 +28,19 @@ function Sidebar() {
               <Link to={url}>{text}</Link>
             </li>
           ))}
-            <li onClick={closeSidebar} className="links">
-              <Link to='/checkout'>checkout</Link>
+          {myUser && (
+            <li>
+              <Link to="/checkout" onClick={closeSidebar}>
+                checkout
+              </Link>
             </li>
+          )}
         </ul>
-        
-            <CartButtons/>
+
+        <CartButtons />
       </aside>
     </SidebarContainer>
-  )
+  );
 }
 
 const SidebarContainer = styled.div`
@@ -98,6 +108,6 @@ const SidebarContainer = styled.div`
       display: none;
     }
   }
-`
+`;
 
-export default Sidebar
+export default Sidebar;

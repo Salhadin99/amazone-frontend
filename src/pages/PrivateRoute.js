@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function PrivateRoute() {
-  return (
-    <div>PrivateRoute</div>
-  )
+  return <div>PrivateRoute</div>;
 }
 
-export default PrivateRoute
+export default PrivateRoute;
