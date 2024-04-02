@@ -9,6 +9,7 @@ import { CartProvider } from "./Contexts/cart_context";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { UserProvider } from "./Contexts/user_context";
 import { AuthProvider } from "./Contexts/auth_context";
+import { AddProductProvider } from "./Contexts/add_product_context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,15 +24,17 @@ root.render(
     <UserProvider>
       <React.StrictMode>
         <AuthProvider>
-          <BrowserRouter>
-            <ProductsProvider>
-              <FilterProvider>
-                <CartProvider>
-                  <App />
-                </CartProvider>
-              </FilterProvider>
-            </ProductsProvider>
-          </BrowserRouter>
+          <AddProductProvider>
+            <BrowserRouter>
+              <ProductsProvider>
+                <FilterProvider>
+                  <CartProvider>
+                    <App />
+                  </CartProvider>
+                </FilterProvider>
+              </ProductsProvider>
+            </BrowserRouter>
+          </AddProductProvider>
         </AuthProvider>
       </React.StrictMode>
     </UserProvider>

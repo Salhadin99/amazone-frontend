@@ -1,12 +1,13 @@
 import React from "react";
 import "./Navbar.css";
 import styled from "styled-components";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaPlus, FaProductHunt, FaUserPlus } from "react-icons/fa";
 import { links } from "../Utils/Constants";
 import { Link } from "react-router-dom";
 import CartButtons from "./Cartbuttons";
 import { useProductsContext } from "../Contexts/products_context";
 import { useUserContext } from "../Contexts/user_context";
+import { FaShoppingCart } from "react-icons/fa";
 
 function Navbar() {
   const { openSidebar } = useProductsContext();
@@ -35,6 +36,12 @@ function Navbar() {
             )}
           </ul>
           <CartButtons />
+          <Link to="/addproduct" className="cart-btn">
+            Add-Product
+            <span className="cart-container">
+              <FaProductHunt />
+            </span>
+          </Link>
           <button className="nav-toggle" type="button" onClick={openSidebar}>
             <FaBars />
           </button>
@@ -49,6 +56,15 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  .cart-btn {
+    color: var(--clr-grey-1);
+    font-size: 1.5rem;
+    letter-spacing: var(--spacing);
+    color: var(--clr-grey-1);
+    display: flex;
+
+    align-items: center;
+  }
 `;
 
 export default Navbar;

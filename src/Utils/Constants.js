@@ -43,3 +43,6 @@ export const services = [
 export const products_url = "http://localhost:3000/api/products";
 
 export const single_product_url = `http://localhost:3000/api/products/`;
+export const add_cart_url = "http://localhost:3000/api/users/cart";
+export const remove_cart_url =
+  "http://localhost:3000/api/users/cart/empty-cart";

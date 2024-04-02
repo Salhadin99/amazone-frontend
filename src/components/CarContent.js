@@ -8,11 +8,13 @@ import CartTotals from "./CartTotals";
 
 const CartContent = () => {
   const { cart, clearCart } = useCartContext();
+  const products = cart.products || [];
+  console.log("cart dfdf", products);
   return (
     <Wrapper className="section section-center">
       <CartColumns />
-      {cart.map((item) => {
-        return <CartItem key={item.id} {...item} />;
+      {products.map((item) => {
+        return <CartItem key={item._id} {...item} />;
       })}
       <hr />
       <div className="link-container">

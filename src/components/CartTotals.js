@@ -7,15 +7,17 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../Contexts/auth_context";
 
 const CartTotals = () => {
-  const { total_amount, shipping_fee } = useCartContext();
+  const { cart, total_amount, shipping_fee = 0 } = useCartContext();
+  console.log("state  total");
   const { isAuthenticated } = useAuthContext();
+  console.log("state  total", isAuthenticated);
 
   return (
     <Wrapper>
       <div>
         <article>
           <h5>
-            subtotal : <span>{formatprice(total_amount)}</span>
+            subtotal : <span>{formatprice(cart.cartTotal)}</span>
           </h5>
           <p>
             shipping fee : <span>{formatprice(shipping_fee)}</span>
@@ -23,7 +25,7 @@ const CartTotals = () => {
           <hr />
           <h4>
             order total :{" "}
-            <span>{formatprice(total_amount + shipping_fee)}</span>
+            <span>{formatprice(cart.cartTotal + shipping_fee)}</span>
           </h4>
         </article>
         {isAuthenticated ? (

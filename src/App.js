@@ -16,6 +16,7 @@ import {
 import CartButtons from "./components/Cartbuttons";
 import CartPage from "./pages/Cartpage";
 import Login from "./components/Login";
+import AddProductForm from "./components/AddProductForm";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/private" element={<Private />} />
         <Route path="/*" element={<Error />} />
+        <Route path="/addproduct" element={<AddProductForm />} />
       </Routes>
       <Footer />
     </div>
